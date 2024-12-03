@@ -1,0 +1,67 @@
+/* global.css */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .responsive-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  /* BlogCard hover effects */
+.blog-card:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Read More link hover effect */
+.blog-card .read-more:hover {
+  color: #b8d8f3; /* Subtle lighter blue */
+}
+
+/* Navbar link hover effect */
+.nav-link:hover {
+  color: #4A90E2; /* Bright blue for a sleek look */
+  text-decoration: underline; /* Add underline for emphasis */
+}
+
+/* Footer hover effect */
+footer:hover {
+  background-color: #292929; /* Darker footer background */
+  color: #fff; /* Brighter text */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions globally */
+.blog-card,
+.read-more,
+.nav-link {
+  transition: all 0.3s ease-in-out;
+}
+
+  

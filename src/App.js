@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import BlogDetail from './pages/BlogDetail';
+import Admin from './pages/Admin';
+import Login from './pages/Login';
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    // Set the body background color when the component is mounted
+    document.body.style.backgroundColor = '#1d1c1c';
+
+    // Cleanup: Reset the background color when the component is unmounted
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
