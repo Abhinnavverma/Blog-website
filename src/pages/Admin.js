@@ -31,7 +31,7 @@ const Admin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/posts', { title, author, content });
+            await axios.post('https://abhinav-blog-website.onrender.com/api/posts', { title, author, content });
             alert('Blog added successfully!');
             setTitle('');
             setAuthor('');

@@ -8,36 +8,36 @@ const path = require('path');
 const app = express();
 app.use(cors());
 
-// Increase the body-parser limit for JSON content if necessary
-app.use(bodyParser.json({ limit: '10mb' })); // Adjust this limit to suit your needs
+
+app.use(bodyParser.json({ limit: '10mb' })); 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
-// Serve uploaded images statically
+
 app.use('/uploads', express.static('uploads'));
 
-// Path to JSON file for storing blogs
+
 const BLOGS_FILE = './blogs.json';
 
-// Configure Multer for file uploads
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './uploads'); // Directory for uploaded files
+        cb(null, './uploads'); 
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        cb(null, uniqueSuffix + path.extname(file.originalname)); // Unique file name
+        cb(null, uniqueSuffix + path.extname(file.originalname)); 
     },
 });
 
-const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } }); // Set the limit for file size, 10MB
+const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } }); 
 
-// Helper functions to read/write blogs
+
 const readBlogs = async () => {
     try {
         const data = await fs.readFile(BLOGS_FILE, 'utf8');
         return JSON.parse(data);
     } catch (err) {
-        // If file doesn't exist, return empty array
+       
         return [];
     }
 };
@@ -66,7 +66,7 @@ app.post('/api/posts', upload.array('images', 5), async (req, res) => {
         title,
         content,
         author,
-        images, // Add uploaded image URLs
+        images, 
     };
 
     blogs.push(newBlog);
@@ -83,7 +83,7 @@ app.get('/api/posts/:id', async (req, res) => {
     res.json(blog);
 });
 
-// Start server
+
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
